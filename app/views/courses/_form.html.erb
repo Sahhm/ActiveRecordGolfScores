@@ -1,0 +1,39 @@
+<%= form_for(@course) do |f| %>
+  <% if @course.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
+
+      <ul>
+      <% @course.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label "Course Name" %><br>
+    <%= f.text_field :name %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :location %><br>
+    <%= f.text_field :location %>
+  </div>
+
+  <div class="field">
+    <%= f.label :front_9_par %><br>
+    <%= f.text_field :front_9_par %>
+  </div>
+  
+  <div class="field">
+    <%= f.label "Back 9 Par" %><br>
+    <%= f.text_field :back_9_par %>
+  </div>
+    
+  <!-- <input type="hidden" value="<%=SecureRandom.hex(10)%>" name="coach[secure_token]"> -->
+  <br>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

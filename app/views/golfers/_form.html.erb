@@ -1,0 +1,30 @@
+<%= form_for(@golfer) do |f| %>
+  <% if @golfer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@golfer.errors.count, "error") %> prohibited this golfer from being saved:</h2>
+
+      <ul>
+      <% @golfer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= f.label "Golfer Name" %><br>
+    <%= f.text_field :name %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :hometown %><br>
+    <%= f.text_field :hometown %>
+  </div>
+
+    
+  <!-- <input type="hidden" value="<%=SecureRandom.hex(10)%>" name="coach[secure_token]"> -->
+  <br>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ActiveRecordGolfScores</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<div class="head">
+<header>
+
+  <nav class="nav">
+    <footer class="page-footer">
+   
+
+    <ul>
+      <li class="nav"> <a href="<%= courses_path %>">Courses</a></li>
+      <li class="nav"> <a href="<%= outings_path %>">Outings</a></li>
+      <li class="nav"> <a href="<%= outings_path %>">Leaderboards</a></li>
+      <li class="nav"> <a href="<%= courses_path %>">Courses by Location</a></li>
+
+    </ul>
+
+    </footer>
+    </nav>
+  
+</header>
+</div>
+<body>
+
+<%= yield %>
+
+</body>
+</html>
