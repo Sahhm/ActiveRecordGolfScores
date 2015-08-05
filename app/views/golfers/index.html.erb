@@ -9,7 +9,10 @@
         <td><p>Name</p></td>
         <td></td>
         <td><p>Hometown</p></td>
-       
+        <td></td>
+        <td><p>Handicap</p></td>
+        <td></td>
+        <td><p>Rounds Played</p></td>
       </tr>
     </thead>
     <tbody>
@@ -18,12 +21,31 @@
           <td><%= golfer.name  %></td>
           <td></td>
           <td><%= golfer.hometown%></td>
-        
+          <td></td>
+          <% totalscore = 0 %>
+          <% totalpar = 0 %>
+          <% total = 0 %>
+          <% @outings.each do |outing| %>
+            <% totalscore = totalscore + outing.front_9_score + outing.back_9_score%>
+            <% totalpar = totalpar + outing.course.front_9_par + outing.course.back_9_par %>
+          <% end %>
+          <% total = totalscore - totalpar%>
+          <% handicap  = (total.to_f / golfer.outings.length.to_f).to_f %>
+          <% if golfer.outings.length == 0 %>
+            <td>N/A</td>
+            <td></td>
+            <td>0</td>
+          <%else%>
+            <td> <%= handicap %> </td>
+            <td></td>
+            <td><%= golfer.outings.length %></td>
+          <%end%>
           <td><%= link_to 'Show', golfer %></td>
           <td><%= link_to 'Edit', edit_golfer_path(golfer) %></td>
           <td><%= link_to 'Destroy', golfer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
-      <% end %> 
+       
+      <% end %>
     </tbody>
   </table>
 

@@ -5,6 +5,8 @@ class GolfersController < ApplicationController
   # GET /golfers.json
   def index
     @golfers = Golfer.all
+    @outings = Outing.includes(:course, :golfer).all.order(:golfer_id)
+    @courses = Course.all
   end
 
   # GET /golfers/1
@@ -15,6 +17,7 @@ class GolfersController < ApplicationController
   # GET /golfers/new
   def new
     @golfer = Golfer.new
+    
   end
 
   # GET /golfers/1/edit

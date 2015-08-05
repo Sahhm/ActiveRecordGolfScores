@@ -17,6 +17,7 @@ class OutingsController < ApplicationController
     @outing = Outing.new
     @courses = Course.all
     @golfers = Golfer.all
+    
   end
 
   # GET /outings/1/edit

@@ -12,6 +12,8 @@
         <td></td>
         <td><p>18 Hole Score</p></td>
         <td></td>
+        <td><p>Outing Handicap</p></td>
+        <td></td>
       </tr>
     </thead>
     <tbody>
@@ -23,7 +25,15 @@
           <% score = outing.front_9_score + outing.back_9_score%>
           <td></td>
           <td><%= score %></td>
-        
+          <td></td>
+          
+          <% par = outing.course.front_9_par + outing.course.back_9_par %>
+          <% handicap = score - par%>
+          <%if handicap >= 0%>
+            <td>+<%= handicap %></td> 
+          <%else%>
+            <td><%= handicap %></td>
+          <%end%>
           <td><%= link_to 'Show', outing %></td>
           <td><%= link_to 'Edit', edit_outing_path(outing) %></td>
           <td><%= link_to 'Destroy', outing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
