@@ -29,7 +29,7 @@ class OutingsController < ApplicationController
     
     @handicap = @score - @par
     
-    @golfer.handicap = @handicap
+    @golfer.handicap = (@golfer.handicap + @handicap) / @golfer.outings.length + 1
     @golfer.rounds_played = @golfer.outings.length + 1
     @golfer.save
   end
