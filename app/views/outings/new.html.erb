@@ -1,7 +1,52 @@
 <h1>New Outing</h1>
+<%= form_tag new_path, :method => "post" do%>
+<%= form_for(@outing)  do |f| %>
+  <% if @outing.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@outing.errors.count, "error") %> prohibited this outing from being saved:</h2>
 
-<%= render 'form' %>
+      <ul>
+      <% @outing.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
+  <div class="field">
+    <%= f.label :course_id %>
+    <%= f.select :course_id  do %>
+      <% @courses.each do |course| %>
+        <%= content_tag(:option, course.name, value: course.id) %>
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :golfer_id %>
+    <%= f.select :golfer_id  do %>
+      <% @golfers.each do |golfer| %>
+        <%= content_tag(:option, golfer.name, value: golfer.id) %>
+      <% end %>
+    <% end %>
+  </div>
 
+  <div class="field">
+    <%= f.label "Front 9 Score" %><br>
+    <%= f.text_field :front_9_score %>
+  </div>
+  
+  <div class="field">
+    <%= f.label "Back 9 Score" %><br>
+    <%= f.text_field :back_9_score %>
+  </div>
+    
+  <!-- <input type="hidden" value="<%=SecureRandom.hex(10)%>" name="coach[secure_token]"> -->
+  <br>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<% end %>
 
 <%= link_to 'Back', outings_path %>

@@ -1,4 +1,12 @@
 <p id="notice"><%= notice %></p>
 
+<h1> Golfer Name: <%= @golfer.name %></h1>
+<p>Rounds Played:</p>
+
+<% @golfer.outings.each do |outing| %>
+<p> <%= outing.course.name %><%= outing.date %> </p>
+<% totalscore = outing.front_9_score + outing.back_9_score %>
+<p>Score - <%= totalscore %>  </p>
+<% end %>
 <%= link_to 'Edit', edit_golfer_path(@golfer) %> |
 <%= link_to 'Back', golfers_path %>

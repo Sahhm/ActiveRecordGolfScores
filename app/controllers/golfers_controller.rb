@@ -12,6 +12,7 @@ class GolfersController < ApplicationController
   # GET /golfers/1
   # GET /golfers/1.json
   def show
+    @golfer = Golfer.find(params[:id])
   end
 
   # GET /golfers/new

@@ -20,6 +20,19 @@ class OutingsController < ApplicationController
     
   end
 
+  def outing_confirm
+    @outing = Outing.create(outing_params)
+    @golfer = Golfer.find(params["outing"]["golfer_id"])
+    @course = Course.find(params["outing"]["course_id"])
+    @score = params["outing"]["front_9_score"].to_i + params["outing"]["back_9_score"].to_i
+    @par = @course.front_9_par.to_i + @course.back_9_par.to_i
+    
+    @handicap = @score - @par
+    
+    @golfer.handicap = @handicap
+    @golfer.rounds_played = @golfer.outings.length + 1
+    @golfer.save
+  end
   # GET /outings/1/edit
   def edit
   end
